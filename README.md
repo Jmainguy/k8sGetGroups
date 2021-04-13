@@ -11,11 +11,13 @@ Usage of k8sGetGroups:
   -check
     	(optional) Check kubernetes connection
   -kubeconfig string
-    	(optional) absolute path to the kubeconfig file (default "/home/jmainguy/.kube/config")
+    	(optional) absolute path to the kubeconfig file (default "$HOME/.kube/config")
   -namespace string
     	(optional) Namespace to grab capacity usage from
   -namespaceList string
     	(optional) Filepath containing a list of namespaces, one per line
+  -show-routes
+    	Print namespace and routes along with rolebindings
 ```
 
 By default, it will get group names, from all namespaces, that have a openshiftRoute.
