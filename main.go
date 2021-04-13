@@ -100,6 +100,45 @@ func roleBindingsFromNamespaces(clientset *kubernetes.Clientset, namespaces []st
 	return
 }
 
+func routesAndRolebindings(clientset *kubernetes.Clientset, routeV1Client *routev1.RouteV1Client, namespaces []string) {
+	for _, namespace := range namespaces {
+		var namespacesRoutes []string
+		routes, err := routeV1Client.Routes(namespace).List(context.TODO(), metav1.ListOptions{})
+		check(err)
+		if len(routes.Items) > 0 {
+			for _, route := range routes.Items {
+				namespacesRoutes = append(namespacesRoutes, route.Spec.Host)
+			}
+		}
+		teams := make(map[string]bool)
+
+		adminRoleBindings := getAdminRoleBindings(clientset, namespace)
+		for _, adminRoleBinding := range adminRoleBindings {
+			rolebinding, err := clientset.RbacV1().RoleBindings(namespace).Get(context.TODO(), adminRoleBinding, metav1.GetOptions{})
+			check(err)
+			for _, subject := range rolebinding.Subjects {
+				if subject.Kind == "Group" {
+					_, exists := teams[subject.Name]
+					if !exists {
+						teams[subject.Name] = true
+					}
+				}
+			}
+		}
+		// Ignore namespaces that dont have a group assigned admin
+		if len(teams) > 0 {
+			//for k, _ := range teams {
+			//	roleBindings = fmt.Sprintf("%s '%s'", roleBindings, k)
+			//}
+			var teamNames []string
+			for teamName := range teams {
+				teamNames = append(teamNames, teamName)
+			}
+			msg := fmt.Sprintf("Namespace: %s, Routes %s, Rolebindings %s", namespace, namespacesRoutes, teamNames)
+			fmt.Println(msg)
+		}
+	}
+}
 func main() {
 	// Log as JSON instead of the default ASCII formatter.
 	log.SetFormatter(&log.JSONFormatter{})
@@ -114,6 +153,7 @@ func main() {
 	}
 	nameSpace := flag.String("namespace", "", "(optional) Namespace to grab capacity usage from")
 	namespaceList := flag.String("namespaceList", "", "(optional) Filepath containing a list of namespaces, one per line")
+	showRoutes := flag.Bool("show-routes", false, "Print namespace and routes along with rolebindings")
 	checkMode := flag.Bool("check", false, "(optional) Check kubernetes connection")
 	flag.Parse()
 
@@ -149,8 +189,12 @@ func main() {
 		namespaces = getNamespacesThatHaveRoutes(routeV1Client, clientset)
 	}
 
-	teams := roleBindingsFromNamespaces(clientset, namespaces)
-	for teamname := range teams {
-		fmt.Println(teamname)
+	if *showRoutes {
+		routesAndRolebindings(clientset, routeV1Client, namespaces)
+	} else {
+		teams := roleBindingsFromNamespaces(clientset, namespaces)
+		for teamname := range teams {
+			fmt.Println(teamname)
+		}
 	}
 }
