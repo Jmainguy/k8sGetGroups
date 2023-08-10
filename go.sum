@@ -296,6 +296,7 @@ github.com/openshift/api v0.0.0-20230724190601-61a5301895a5 h1:0n+J2TGJ/VssCO952
 github.com/openshift/api v0.0.0-20230724190601-61a5301895a5/go.mod h1:yimSGmjsI+XF1mr+AKBs2//fSXIOhhetHGbMlBEfXbs=
 github.com/openshift/api v0.0.0-20230726162818-81f778f3b3ec h1:Cbxz0bIBkYF7iKcLPRgb7u4y39NBQqQG2XJ1fEBSZUY=
 github.com/openshift/api v0.0.0-20230726162818-81f778f3b3ec/go.mod h1:yimSGmjsI+XF1mr+AKBs2//fSXIOhhetHGbMlBEfXbs=
+github.com/openshift/api v0.0.0-20230807121159-a81c3efc8824/go.mod h1:yimSGmjsI+XF1mr+AKBs2//fSXIOhhetHGbMlBEfXbs=
 github.com/openshift/api v0.0.0-20230809230802-fd420c26854b h1:B7BC1g4W30lRsiI0WPQLIRafw3cC+4mjkzv3vrej+tU=
 github.com/openshift/api v0.0.0-20230809230802-fd420c26854b/go.mod h1:yimSGmjsI+XF1mr+AKBs2//fSXIOhhetHGbMlBEfXbs=
 github.com/openshift/build-machinery-go v0.0.0-20200917070002-f171684f77ab/go.mod h1:b1BuldmJlbA/xYtdZvKi+7j5YGB44qJUJDZ9zwiNCfE=
@@ -304,6 +305,8 @@ github.com/openshift/client-go v0.0.0-20210112165513-ebc401615f47 h1:+TEY29DK0Xh
 github.com/openshift/client-go v0.0.0-20210112165513-ebc401615f47/go.mod h1:u7NRAjtYVAKokiI9LouzTv4mhds8P4S1TwdVAfbjKSk=
 github.com/openshift/client-go v0.0.0-20230718165156-6014fb98e86a h1:ZKewwwEIURDnufm2oBd9rRvSp45BtRzPPrsUIFtm4V8=
 github.com/openshift/client-go v0.0.0-20230718165156-6014fb98e86a/go.mod h1:EjhPQjEm8HM3GThz5ywNGLEec1P1IjTn08kwzdvupvA=
+github.com/openshift/client-go v0.0.0-20230807132528-be5346fb33cb h1:laYRaVm1tMdTLkZERvj9muJDvUtYo2HjRoo4Xu55EfM=
+github.com/openshift/client-go v0.0.0-20230807132528-be5346fb33cb/go.mod h1:eCLby3OeidJ9+8GcvvGROU6hsCv2XAPQw8EO7d8NbQA=
 github.com/openshift/client-go v3.9.0+incompatible h1:13k3Ok0B7TA2hA3bQW2aFqn6y04JaJWdk7ITTyg+Ek0=
 github.com/openshift/client-go v3.9.0+incompatible/go.mod h1:6rzn+JTr7+WYS2E1TExP4gByoABxMznR6y2SnUIkmxk=
 github.com/peterbourgon/diskv v2.0.1+incompatible/go.mod h1:uqqh8zWWbv1HBMNONnaR/tNboyR3/BZd58JJSHlUSCU=
